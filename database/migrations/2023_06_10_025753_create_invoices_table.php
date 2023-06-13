@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('code');
             $table->decimal('total_price');
             $table->datetime('book_date')->default(now()->toDatetimeString());
+            $table->foreign('ticket_id')->references('id')->on('tickets')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

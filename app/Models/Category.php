@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable=[''];
+    public function movieCat(){
+        return $this->hasMany(\App\Models\MovieCat::class);
+    }
 
 }

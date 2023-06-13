@@ -15,13 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 Route::controller(\App\Http\Controllers\AccountController::class)->group(function (){
    Route::get('account','index');
+   Route::post('account','store');
 
 });
 Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
    Route::get('users','index');
    Route::put('block/{id}','block');
    Route::put('unblock/{id}','unblock');
+   Route::post('users','store');
+
 });
+
+Route::post('register',[\App\Http\Controllers\AuthController::class,'register']);
+Route::post('verify',[\App\Http\Controllers\VerificationController::class,'verifyOtp']);
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

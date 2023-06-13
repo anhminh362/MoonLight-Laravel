@@ -11,6 +11,18 @@ class UserController extends Controller
         $user=User::all();
         return $user;
     }
+    protected function show(string $id){
+        $user = User::find($id);
+
+        if (!$user){
+            return response()->json([
+                'message' => 'user not found',
+            ],404);
+        }
+        return response()->json([
+            'user'=>$user
+        ],200);
+    }
     protected function block($id){
         $user=User::find($id);
         if($user->status===1){
@@ -29,5 +41,8 @@ class UserController extends Controller
             return ['unblock successfully'];
         }
         return ['cannot unblock'];
+    }
+    protected function store(Request $request){
+        return User::create($request->all());
     }
 }

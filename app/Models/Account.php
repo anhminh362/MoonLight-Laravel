@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','email','password','role','verify'];
+    protected $fillable = ['email','password','role','verify'];
 
 
     public function user(){
