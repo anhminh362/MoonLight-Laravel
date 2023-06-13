@@ -33,8 +33,6 @@ class VerificationController extends Controller
             return $this->commonResponse($account,'Account existed','500');
         }
 
-
-
         if (Cache::get(self::OTP_PREFIX. $account->id) == $otpRequest->otp){
             Account::where('email', $otpRequest->email)
                 ->update([
