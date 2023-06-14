@@ -15,14 +15,10 @@ class MovieController extends Controller
         $movie=Movie::find($id);
         return $movie;
     }
+    protected function store(Request $request){
+        Movie::create($request->all());
+    }
     protected function update(Request $request,$id){
-
-//        $validatedData = $request->validate([
-//            'name' => 'required',
-//            'avatar' => 'required',
-//            'county' => 'required',
-//            'description' => 'required',
-//        ]);
         $movie=Movie::find($id);
         $movie->name=$request->input('name');
         $movie->avatar=$request->input('avatar');

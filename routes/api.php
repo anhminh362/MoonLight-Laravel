@@ -29,6 +29,24 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function (
 Route::post('register',[\App\Http\Controllers\AuthController::class,'register']);
 Route::post('verify',[\App\Http\Controllers\VerificationController::class,'verifyOtp']);
 
+Route::controller(\App\Http\Controllers\RoomController::class)->group(function (){
+   Route::get('room','index');
+   Route::post('room','store');
+});
+
+Route::controller(\App\Http\Controllers\CategoryController::class)->group(function (){
+   Route::get('cat','index');
+   Route::post('cat','store');
+});
+
+Route::controller(\App\Http\Controllers\MovieController::class)->group(function (){
+   Route::post('movie','store');
+   Route::get('movie','index');
+   Route::get('movie/{id}','show');
+   Route::put('movie/{id}','update');
+   Route::delete('movie/{id}','destroy');
+
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

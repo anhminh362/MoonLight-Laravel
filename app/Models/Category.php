@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable=[''];
+    protected $fillable=['name'];
     public function movieCat(){
         return $this->hasMany(\App\Models\MovieCat::class);
     }
