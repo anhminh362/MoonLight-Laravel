@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MovieCat extends Model
 {
     use HasFactory;
+    protected $fillable=['movie_id','cat_id'];
     protected $table='movie_cats';
     public function movie()
     {

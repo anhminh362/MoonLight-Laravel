@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('avatar');
             $table->string('county');
-            $table->string('description');
+            $table->string('description',1000);
             $table->date('premiere_date');
             $table->integer('age_limits')->nullable();
             $table->string('trailer')->nullable();
