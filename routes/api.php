@@ -59,3 +59,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+//====================================CRUD Schedule========================================//
+
+Route::get('get-schedule',[App\Http\Controllers\ScheduleController::class,'getSchedule']);						
+                        
+Route::get('get-schedule/{id}', [App\Http\Controllers\ScheduleController::class,'getOneSchedule']);	
+
+Route::post('add-schedule',[App\Http\Controllers\ScheduleController::class,'addSchedule']);	
+
+Route::delete('delete-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'deleteSchedule']);	
+
+Route::put('edit-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'editSchelude']);								
+                        
