@@ -48,6 +48,13 @@ Route::controller(\App\Http\Controllers\MovieController::class)->group(function 
 
 });
 
+Route::controller(\App\Http\Controllers\MovieCatController::class)->group(function (){
+   Route::get('movieCat','index');
+   Route::get('movieCat/{id}','show');
+   Route::post('movieCat','store');
+   Route::delete('movieCat/{id}','destroy');
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
