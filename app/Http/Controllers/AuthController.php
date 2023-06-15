@@ -13,7 +13,7 @@ class AuthController extends Controller
             'email'=>'required|email|unique:accounts',
             'password'=>'required|min:8',
             'c_password'=>'required|same:password'
-        ],
+            ],
             [
                 'email.required' => 'The email field is required.',
                 'email.email' => 'Please enter a valid email address.',

@@ -15,7 +15,7 @@ class User extends Model
 //     public function account(){
 //         return $this->hasMany('Account')
 //     }
-    protected $fillable = ['email','full_name','phone','status','account_id'];
+    protected $fillable = ['name','phone','status','account_id'];
     public function account()
         {
             return $this->belongsTo(\App\Models\Account::class);
