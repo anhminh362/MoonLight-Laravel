@@ -11,9 +11,7 @@ class AccountController extends Controller
 {
     protected function index(){
         $account=Account::all();
-        return response()->json([
-            'account' => $account
-        ],200);
+        return response()->json($account,200);
     }
     protected function store(Request $request):void{
         Account::create($request->all());

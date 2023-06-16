@@ -19,9 +19,7 @@ class UserController extends Controller
                 'message' => 'user not found',
             ],404);
         }
-        return response()->json([
-            'user'=>$user
-        ],200);
+        return response()->json($user,200);
     }
     protected function block($id){
         $user=User::find($id);
