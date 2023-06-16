@@ -9,7 +9,7 @@ class MovieController extends Controller
 {
     protected function index(){
         $movie=Movie::all();
-        return response()->json(['movie'=>$movie],200);
+        return response()->json($movie,200);
     }
     protected function show($id){
         $movie=Movie::find($id);
