@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('avatar');
-            $table->string('county');
+            $table->string('country');
             $table->string('description',1000);
             $table->date('premiere_date');
             $table->integer('age_limits')->nullable();

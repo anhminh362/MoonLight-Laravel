@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(\App\Http\Controllers\AccountController::class)->group(function (){
    Route::get('account','index');
    Route::post('account','store');
+   Route::get('account/{id}','show');
 
 });
 Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
@@ -62,13 +63,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //====================================CRUD Schedule========================================//
 
-Route::get('get-schedule',[App\Http\Controllers\ScheduleController::class,'getSchedule']);						
-                        
-Route::get('get-schedule/{id}', [App\Http\Controllers\ScheduleController::class,'getOneSchedule']);	
+Route::get('get-schedule',[App\Http\Controllers\ScheduleController::class,'getSchedule']);
 
-Route::post('add-schedule',[App\Http\Controllers\ScheduleController::class,'addSchedule']);	
+Route::get('get-schedule/{id}', [App\Http\Controllers\ScheduleController::class,'getOneSchedule']);
 
-Route::delete('delete-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'deleteSchedule']);	
+Route::post('add-schedule',[App\Http\Controllers\ScheduleController::class,'addSchedule']);
 
-Route::put('edit-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'editSchelude']);								
-                        
+Route::delete('delete-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'deleteSchedule']);
+
+Route::put('edit-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'editSchelude']);
+

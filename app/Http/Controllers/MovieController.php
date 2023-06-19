@@ -22,7 +22,7 @@ class MovieController extends Controller
         $movie=Movie::find($id);
         $movie->name=$request->input('name');
         $movie->avatar=$request->input('avatar');
-        $movie->county=$request->input('county');
+        $movie->country=$request->input('country');
         $movie->description=$request->input('description');
         $movie->age_limits=$request->input('age_limits');
         $movie->trailer=$request->input('trailer');

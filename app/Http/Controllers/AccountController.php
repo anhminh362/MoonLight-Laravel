@@ -51,10 +51,10 @@ class AccountController extends Controller
 //        Session::forget('user');
 //        Session::forget(cart);
     }
-//    protected function show($id){
-//        $account=Account::find($id);
-//        return $account;
-//    }
+    protected function show($id){
+        $account=Account::find($id);
+        return $account;
+    }
 //    protected function update(Request $request,$id){
 //        $account=Account::find($id);
 //        $account->email=$request->input('email');

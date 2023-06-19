@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-    protected $fillable=['name','avatar','county','description','premiere_date','age_limits','trailer'];
+    protected $fillable=['name','avatar','country','description','premiere_date','age_limits','trailer'];
     use HasFactory;
     public function movieCat(){
         return $this->hasMany(MovieCat::class);
