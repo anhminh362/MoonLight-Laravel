@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(\App\Http\Controllers\AccountController::class)->group(function (){
    Route::get('account','index');
    Route::post('account','store');
-   Route::get('account/{id}','show');
+   Route::get('account/{email}','show');
 
 });
 Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
