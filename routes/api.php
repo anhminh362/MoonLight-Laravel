@@ -24,6 +24,8 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function (
    Route::put('block/{id}','block');
    Route::put('unblock/{id}','unblock');
    Route::post('users','store');
+   Route::delete('users/{id}', 'destroy');
+
 
 });
 
