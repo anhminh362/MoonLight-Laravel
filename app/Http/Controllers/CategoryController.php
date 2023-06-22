@@ -14,5 +14,9 @@ class CategoryController extends Controller
     protected function store(Request $request){
         Category::create($request->all());
     }
+    protected function show(string $id){
+        $cat=Category::find($id);
+        return response()->json($cat,200);
+    }
 
 }
