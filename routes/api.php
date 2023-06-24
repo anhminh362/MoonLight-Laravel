@@ -34,8 +34,8 @@ Route::post('verify',[\App\Http\Controllers\VerificationController::class,'verif
 // Route::post('login', [\App\Http\Controllers\AccountController::class, 'login']);
 
 
-Route::post('/login', [\App\Http\Controllers\AccountController::class, 'login']);
-Route::post('/logout', [\App\Http\Controllers\AccountController::class, 'logout']);
+Route::post('/Login', [\App\Http\Controllers\AccountController::class, 'Login']);
+Route::post('/Logout', [\App\Http\Controllers\AccountController::class, 'Logout']);
 
 
 Route::controller(\App\Http\Controllers\RoomController::class)->group(function (){

@@ -96,60 +96,60 @@ class AccountController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
-    {
-        $account = new Account();
-        $account->email = $request->input('email');
-        $account->password = Hash::make($request->input('password'));
-        $account->save();
+{
+    $account = new Account();
+    $account->email = $request->input('email');
+    $account->password = Hash::make($request->input('password'));
+    $account->save();
 
+    return response()->json([
+        'message' => 'Account created successfully',
+        'account' => $account,
+    ], 201);
+}
+
+/**
+ * Đăng nhập với email và mật khẩu.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function login(Request $request)
+{
+    $email = $request->input('email');
+    $password = $request->input('password');
+
+    $account = Account::where('email', $email)->first();
+
+    if (!$account || !Hash::check($password, $account->password)) {
         return response()->json([
-            'message' => 'Account created successfully',
-            'account' => $account,
-        ], 201);
+            'message' => 'Invalid email or password',
+        ], 401);
     }
 
-    /**
-     * Đăng nhập với email và mật khẩu.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login(Request $request)
-    {
-        $email = $request->input('email');
-        $password = $request->input('password');
+    $token = $account->createToken('API Token')->plainTextToken;
 
-        $account = Account::where('email', $email)->first();
+    return response()->json([
+        'message' => 'Login successfully',
+        'token' => $token,
+    ]);
+}
 
-        if (!$account || !$account->authenticate($password)) {
-            return response()->json([
-                'message' => 'Invalid email or password',
-            ], 401);
-        }
+/**
+ * Đăng xuất.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function logout(Request $request)
+{
+    $account = $request->user();
+    $account->tokens()->delete();
 
-        $token = $account->createToken('API Token')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Login successfully',
-            'token' => $token,
-        ]);
-    }
-
-    /**
-     * Đăng xuất.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout(Request $request)
-    {
-        $account = $request->user();
-        $account->tokens()->delete();
-
-        return response()->json([
-            'message' => 'Logged out successfully',
-        ]);
-    }
+    return response()->json([
+        'message' => 'Logged out successfully',
+    ]);
+}
 
     /**
      * Hiển thị thông tin của tài khoản dựa trên email.
@@ -173,14 +173,15 @@ class AccountController extends Controller
         ]);
     }
     public function checkEmail(Request $request)
-{
-    $email = $request->input('email');
-
-    $account = Account::where('email', $email)->first();
-
-    return response()->json([
-        'exists' => $account ? true : false,
-    ]);
-}
+    {
+        $email = $request->input('email');
+    
+        $account = Account::where('email', $email)->first();
+    
+        return response()->json([
+            'exists' => $account ? true : false,
+        ]);
+    }
+    
 
 }
