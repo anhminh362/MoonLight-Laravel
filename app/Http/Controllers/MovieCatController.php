@@ -12,8 +12,10 @@ class MovieCatController extends Controller
         return response()->json($cats,200);
     }
     protected function show(string $id){
-        $cats = MovieCat::with('movie')->where('movie_id', $id)->get('cat_id');
-        return response()->json($cats,200);
+//        $cats = MovieCat::with('movie')->where('movie_id', $id)->get('cat_id');
+//        return response()->json($cats,200);
+        $cats = MovieCat::where('movie_id', $id)->pluck('cat_id');
+        return response()->json( $cats, 200);
     }
     protected function store(Request $request):void{
         MovieCat::create($request->all());
