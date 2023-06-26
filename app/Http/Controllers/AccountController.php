@@ -128,12 +128,12 @@ public function login(Request $request)
     }
 
     $token = $account->createToken('API Token')->plainTextToken;
-
     return response()->json([
         'message' => 'Login successfully',
         'token' => $token,
     ]);
 }
+
 
 /**
  * Đăng xuất.
@@ -141,7 +141,7 @@ public function login(Request $request)
  * @param  \Illuminate\Http\Request  $request
  * @return \Illuminate\Http\JsonResponse
  */
-public function logout(Request $request)
+public function Logout(Request $request)
 {
     $account = $request->user();
     $account->tokens()->delete();
@@ -185,3 +185,5 @@ public function logout(Request $request)
     
 
 }
+// http_proxy
+// php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
