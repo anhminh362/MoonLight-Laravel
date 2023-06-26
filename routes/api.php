@@ -31,11 +31,11 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function (
 
 Route::post('register',[\App\Http\Controllers\AuthController::class,'register']);
 Route::post('verify',[\App\Http\Controllers\VerificationController::class,'verifyOtp']);
-// Route::post('login', [\App\Http\Controllers\AccountController::class, 'login']);
 
 
-Route::post('/Login', [\App\Http\Controllers\AccountController::class, 'Login']);
-Route::post('/Logout', [\App\Http\Controllers\AccountController::class, 'Logout']);
+
+Route::post('/Login', [\App\Http\Controllers\AccountController::class, 'login']);
+Route::post('/Logout', [\App\Http\Controllers\AccountController::class, 'logout']);
 
 
 Route::controller(\App\Http\Controllers\RoomController::class)->group(function (){
