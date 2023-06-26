@@ -18,6 +18,7 @@ return new class extends Migration
             $table->time('time_begin');
             $table->time('time_end');
             $table->date('movie_date');
+            $table->decimal('price');
             $table->foreign('movie_id')->references('id')->on('movies')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('room_id')->references('id')->on('rooms')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
