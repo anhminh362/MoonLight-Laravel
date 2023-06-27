@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
+    protected $fillable = ['schedule_id','status'];
     use HasFactory;
     public function schedule(){
         return $this->belongsTo(\App\Models\Schedule::class);

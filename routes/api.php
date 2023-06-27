@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookTicketController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -82,3 +84,13 @@ Route::delete('schedule/{id}',[App\Http\Controllers\ScheduleController::class,'d
 
 Route::put('schedule/{id}',[App\Http\Controllers\ScheduleController::class,'editSchelude']);
 
+//==================
+Route::controller(TicketController::class)->group(function (){
+   Route::post('ticket','store');
+   Route::put('ticket/{id}','update');
+   Route::get('ticket','index');
+});
+
+Route::controller(BookTicketController::class)->group(function(){
+   Route::get('bookticket/{id}','show');
+});
