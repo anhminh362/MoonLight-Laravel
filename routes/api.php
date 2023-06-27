@@ -32,10 +32,17 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function (
 Route::post('register',[\App\Http\Controllers\AuthController::class,'register']);
 Route::post('verify',[\App\Http\Controllers\VerificationController::class,'verifyOtp']);
 
+
+
+Route::post('/Login', [\App\Http\Controllers\AccountController::class, 'login']);
+Route::post('/Logout', [\App\Http\Controllers\AccountController::class, 'logout']);
+
+
 Route::controller(\App\Http\Controllers\RoomController::class)->group(function (){
    Route::get('room','index');
    Route::post('room','store');
 });
+Route::get('/check-email',[\App\Http\Controllers\AccountController::class,'checkEmail']);
 
 Route::controller(\App\Http\Controllers\CategoryController::class)->group(function (){
    Route::get('cat','index');
@@ -65,13 +72,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //====================================CRUD Schedule========================================//
 
-Route::get('get-schedule',[App\Http\Controllers\ScheduleController::class,'getSchedule']);
+Route::get('schedule',[App\Http\Controllers\ScheduleController::class,'getSchedule']);
 
-Route::get('get-schedule/{id}', [App\Http\Controllers\ScheduleController::class,'getOneSchedule']);
+Route::get('schedule/{id}', [App\Http\Controllers\ScheduleController::class,'getOneSchedule']);
 
-Route::post('add-schedule',[App\Http\Controllers\ScheduleController::class,'addSchedule']);
+Route::post('schedule',[App\Http\Controllers\ScheduleController::class,'addSchedule']);
 
-Route::delete('delete-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'deleteSchedule']);
+Route::delete('schedule/{id}',[App\Http\Controllers\ScheduleController::class,'deleteSchedule']);
 
-Route::put('edit-schedule/{id}',[App\Http\Controllers\ScheduleController::class,'editSchelude']);
+Route::put('schedule/{id}',[App\Http\Controllers\ScheduleController::class,'editSchelude']);
 
