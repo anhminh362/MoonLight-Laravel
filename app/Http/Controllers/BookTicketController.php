@@ -17,6 +17,12 @@ class BookTicketController extends Controller
         ->map(function ($item) {
             return $item->pluck('time_begin');
         });
-        return response()->json($schedule, 200);
+        $response = [];
+
+        foreach ($schedule as $date => $times) {
+            $response[] = ["movie_date" => $date, "times" => $times->toArray()];
+        }
+    
+        return response()->json($response, 200);
     }
 }
