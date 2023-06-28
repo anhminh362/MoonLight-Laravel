@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookSeatController;
 use App\Http\Controllers\BookTicketController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
@@ -94,4 +95,8 @@ Route::controller(TicketController::class)->group(function (){
 
 Route::controller(BookTicketController::class)->group(function(){
    Route::get('bookticket/{id}','show');
+});
+
+Route::controller(BookSeatController::class)->group(function(){
+   Route::get('bookseat/{id}','show');
 });
