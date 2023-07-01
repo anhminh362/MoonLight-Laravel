@@ -18,9 +18,8 @@ class Account extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'account_id');
     }
-
     public function authenticate($password)
     {
         return Hash::check($password, $this->password);
