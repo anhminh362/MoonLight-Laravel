@@ -105,4 +105,5 @@ Route::controller(LikeController::class)->group(function(){
    Route::post('like','like');
    Route::get('like/{id}','show');
    Route::post('unlike','unlike');
+   Route::get('like','index');
 });

@@ -54,4 +54,8 @@ class LikeController extends Controller
         ->count();
         return $num;
     }
+    protected function index(){
+        $like=Like::all();
+        return response()->json([$like],200);
+    }
 }
