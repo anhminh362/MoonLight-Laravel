@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookSeatController;
 use App\Http\Controllers\BookTicketController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -108,3 +109,6 @@ Route::controller(LikeController::class)->group(function(){
    Route::post('unlike','unlike');
    Route::get('like','index');
 });
+//========================Momo payment=========================//
+Route::get("MomoPayment",[PaymentController::class,"MomoPayment"]);
+Route::post('/MomoPayment', [CheckoutController::class, 'MomoPayment']);
