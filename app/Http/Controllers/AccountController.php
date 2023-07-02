@@ -52,7 +52,7 @@ public function login(Request $request)
     $password = $request->input('password');
 
     $account = Account::where('email', $email)->first();
-
+   
     if (!$account || !Hash::check($password, $account->password)) {
         return response()->json([
             'message' => 'Invalid email or password',
@@ -60,9 +60,17 @@ public function login(Request $request)
     }
 
     $token = $account->createToken('API Token')->plainTextToken;
+
+    // Get the associated User model
+    $user = $account->user;
+
+    // Access the user's properties, e.g., user ID
+    $user_id = $user->id;
+
     return response()->json([
         'message' => 'Login successfully',
         'token' => $token,
+        'user_id' => $user_id,
     ]);
 }
 
