@@ -86,6 +86,7 @@ Route::post('schedule',[App\Http\Controllers\ScheduleController::class,'addSched
 Route::delete('schedule/{id}',[App\Http\Controllers\ScheduleController::class,'deleteSchedule']);
 
 Route::put('schedule/{id}',[App\Http\Controllers\ScheduleController::class,'editSchelude']);
+Route::post('scheduleId',[App\Http\Controllers\ScheduleController::class,'findScheduleId']);
 
 //==================
 Route::controller(TicketController::class)->group(function (){

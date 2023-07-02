@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class ScheduleController extends Controller
 {
@@ -49,5 +50,22 @@ class ScheduleController extends Controller
         $schedule->save();
         return response()->json(['status' => 'ok', 'msg' => 'Edit successed']);
 
+    }
+    public function findScheduleId(Request $request){
+        $movie_id = intval($request->input('movie_id'));
+        $time_begin = $request->input('time_begin');
+        $movie_date = $request->input('movie_date');
+    
+        $schedule = Schedule::select('id')
+            ->where('movie_id', $movie_id)
+            ->where('time_begin', $time_begin)
+            ->where('movie_date', $movie_date)
+            ->first();
+    
+        if ($schedule) {
+            return response()->json(['id' => $schedule->id], 200);
+        } else {
+            return response()->json(['message' => 'Schedule not found'], 404);
+        }
     }
 }
