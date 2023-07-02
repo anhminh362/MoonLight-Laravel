@@ -110,7 +110,4 @@ Route::controller(LikeController::class)->group(function(){
    Route::get('like','index');
 });
 
-// Route::controller(SendEmailController::class)->group(function(){
-//    Route::post(SendMail,SendMail);
-// });
 Route::get('sendmail',[SendEmailController::class, "SendMail"]);
