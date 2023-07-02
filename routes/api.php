@@ -6,7 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SendEmailController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -109,3 +109,8 @@ Route::controller(LikeController::class)->group(function(){
    Route::post('unlike','unlike');
    Route::get('like','index');
 });
+
+// Route::controller(SendEmailController::class)->group(function(){
+//    Route::post(SendMail,SendMail);
+// });
+Route::get('sendmail',[SendEmailController::class, "SendMail"]);
