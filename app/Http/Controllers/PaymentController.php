@@ -30,15 +30,15 @@ class PaymentController extends Controller
     }
     public function MomoPayment(Request $request)
     {
-        $data_price = $request->all();
+        $data_price = $request->input("amount");
         // dd($data_price);
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
         $partnerCode = 'MOMOBKUN20180529';
         $accessKey = 'klm05TvNBzhg7h7j';
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
         $orderInfo = "Thanh toán qua MoMo";
-        // $amount = $data_price['end-total'];
-        $amount = 10000;
+        $amount = $data_price;
+        // $amount = 10000;
         $orderId = time() . "";
         $redirectUrl = "http://localhost:3000/";
         $ipnUrl = "http://localhost:3000/";
@@ -68,7 +68,7 @@ class PaymentController extends Controller
         $jsonResult = json_decode($result, true);  // decode json
         // dd($result);
         //Just a example, please check more in there
-        return redirect()->to($jsonResult['payUrl']);
+        return $jsonResult['payUrl'];
         // header('Location: ' . $jsonResult['payUrl']);
     }
 }

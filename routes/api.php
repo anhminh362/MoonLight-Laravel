@@ -111,4 +111,4 @@ Route::controller(LikeController::class)->group(function(){
 });
 //========================Momo payment=========================//
 Route::get("MomoPayment",[PaymentController::class,"MomoPayment"]);
-Route::post('/MomoPayment', [CheckoutController::class, 'MomoPayment']);
+Route::post('/MomoPayment', [PaymentController::class, 'MomoPayment']);
