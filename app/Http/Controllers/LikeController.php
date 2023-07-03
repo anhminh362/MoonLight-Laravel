@@ -4,27 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
     protected function like(Request $request){
-            $user = $request->input('user_id');
-            $movie=$request->input('movie_id');
-        if (!$user) {
+        $userId = auth('sanctum')->user()->id;//chuyen token thanh user_id
+        $movie=$request->input('movie_id');
+        if (!$userId) {
             return response()->json([
                 'message' => 'Please log in',
             ]);
         }
-        $like = Like::where('user_id', $user)->where('movie_id', $movie)->first();
+        $like = Like::where('user_id', $userId)->where('movie_id', $movie)->first();
         if($like){
             return response()->json([
                 'message' => 'Already liked',
             ]);
-            //$like->delete()
+            
         }
-        Like::create($request->all());
+        $like = new Like();
+        $like->movie_id = intval($request->input('movie_id'));
+        $like->user_id = intval($request->input('user_id'));
+        $like->save();
+        return response()->json([
+            'message' => 'Like succesful',
+            'like'=> $like,
+        ]);
+        
+        
     }
+
     protected function unlike(Request $request){
         $user = $request->input('user_id');
         $movie=$request->input('movie_id');
