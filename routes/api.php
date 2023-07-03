@@ -7,7 +7,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SendEmailController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -109,6 +109,8 @@ Route::controller(LikeController::class)->group(function(){
    Route::post('unlike','unlike');
    Route::get('like','index');
 });
+
+Route::get('sendmail',[SendEmailController::class, "SendMail"]);
 //========================Momo payment=========================//
 Route::get("MomoPayment",[PaymentController::class,"MomoPayment"]);
 Route::post('/MomoPayment', [PaymentController::class, 'MomoPayment']);
