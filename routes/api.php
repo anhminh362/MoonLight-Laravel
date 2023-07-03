@@ -52,6 +52,7 @@ Route::get('/check-email',[\App\Http\Controllers\AccountController::class,'check
 Route::controller(\App\Http\Controllers\CategoryController::class)->group(function (){
    Route::get('cat','index');
    Route::post('cat','store');
+   Route::get('cat/{id}','show');
 });
 
 Route::controller(\App\Http\Controllers\MovieController::class)->group(function (){
