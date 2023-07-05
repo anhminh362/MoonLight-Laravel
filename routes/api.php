@@ -111,7 +111,7 @@ Route::controller(LikeController::class)->group(function(){
    Route::get('like','index');
 });
 
-Route::get('sendmail',[SendEmailController::class, "SendMail"]);
+Route::post('sendmail',[SendEmailController::class, "SendMail"]);
 //========================Momo payment=========================//
 Route::get("MomoPayment",[PaymentController::class,"MomoPayment"]);
 Route::post('/MomoPayment', [PaymentController::class, 'MomoPayment']);
