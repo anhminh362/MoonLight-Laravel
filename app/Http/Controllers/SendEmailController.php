@@ -3,23 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Movie;
+use App\Models\Room;
+use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmailController extends Controller
 {
-    public function SendMail()
-    {
-        $toEmail = 'kieu.ho24@student.passerellesnumeriques.org';
-        $name='MoonLight Cinama';
-        $seat = "B1 B2";
-        $room = "Room 10";
-        $time = "19/2";
-        $totalPrice = "123";
-
-        Mail::send('emails.test', compact('name','seat','room','time','totalPrice'), function($email) use($name, $toEmail, $seat,$room,$time,$totalPrice  ){
+    public function SendMail(Request $request)
+    {    
+        $user = User::find($request->input('user_id'));
+        $schedule=Schedule::find($request->input('schedule_id'));
+        $movieId=$schedule->movie_id;
+        $toEmail =  Account::firstWhere('id',$user->account_id)->email;
+        $roomId=$schedule->room_id;
+        $name=$user->name;
+        $movie=Movie::find($movieId)->name;
+        $seats = $request->input('ticket');
+        $seat = implode(', ', $seats);
+        $room = Room::find($roomId)->name;
+        $time = $schedule->time_begin;
+        $day  = $schedule->movie_date;
+        $totalPrice = $request->input('price');
+        Mail::send('emails.test', compact('movie','name','seat','room','time','totalPrice','day'), function($email) use($name, $toEmail, $seat,$room,$time,$totalPrice,$day,$movie ){
             $email->subject('MoonLight Cinema');
-            $email->to($toEmail, $name, $seat,$room,$time,$totalPrice  );
+            $email->to($toEmail, $name, $seat,$room,$time,$totalPrice,$day,$movie  );
         });
     }
 }
