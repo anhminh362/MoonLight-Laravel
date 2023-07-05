@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookSeatController;
 use App\Http\Controllers\BookTicketController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TicketController;
@@ -115,3 +116,5 @@ Route::post('sendmail',[SendEmailController::class, "SendMail"]);
 //========================Momo payment=========================//
 Route::get("MomoPayment",[PaymentController::class,"MomoPayment"]);
 Route::post('/MomoPayment', [PaymentController::class, 'MomoPayment']);
+// ===============================
+Route::post('invoice',[InvoiceController::class,'store']);
