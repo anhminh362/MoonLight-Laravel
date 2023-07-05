@@ -22,7 +22,7 @@ class SendEmailController extends Controller
         $roomId=$schedule->room_id;
         $name=$user->name;
         $movie=Movie::find($movieId)->name;
-        $seats = $request->input('ticket');
+        $seats = $request->input('seats');
         $seat = implode(', ', $seats);
         $room = Room::find($roomId)->name;
         $time = $schedule->time_begin;
