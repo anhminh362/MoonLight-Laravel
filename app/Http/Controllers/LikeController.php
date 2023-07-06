@@ -11,14 +11,17 @@ class LikeController extends Controller
 {
     protected function like(Request $request)
 {
-    $userId = auth('sanctum')->user()->id;
-    $movie = $request->input('movie_id');
-
-    if (!$userId) {
+    $user = auth('sanctum')->user();
+    
+    if (!$user) {
         return response()->json([
             'message' => 'Please log in',
         ]);
     }
+    
+    $accountId = $user->id;
+    $userId = User::where('account_id', $accountId)->first()->id;
+    $movie = $request->input('movie_id');
 
     $like = Like::where('user_id', $userId)->where('movie_id', $movie)->first();
     if ($like) {
@@ -29,40 +32,38 @@ class LikeController extends Controller
 
     $newLike = new Like();
     $newLike->movie_id = intval($request->input('movie_id'));
-    $newLike->user_id = intval($request->input('user_id'));
+    $newLike->user_id = $userId;
     $newLike->save();
 
-    // Lấy số lượt thích hiện tại của phim
-    $numLikes = Like::where('movie_id', $movie)->count();
 
     return response()->json([
         'message' => 'Like successful',
         'like' => $newLike,
-        'num_likes' => $numLikes,
     ]);
 }
 
 protected function unlike(Request $request)
 {
-    $user = $request->input('user_id');
-    $movie = $request->input('movie_id');
-
+    $user = auth('sanctum')->user();
+    
     if (!$user) {
         return response()->json([
             'message' => 'Please log in',
         ]);
     }
+    
+    
+    $accountId = $user->id;
+    $userId = User::where('account_id', $accountId)->first()->id;
+    $movie = $request->input('movie_id');
 
-    $like = Like::where('user_id', $user)->where('movie_id', $movie)->first();
+
+    $like = Like::where('user_id', $userId)->where('movie_id', $movie)->first();
     if ($like) {
         $like->delete();
 
-        // Lấy số lượt thích hiện tại của phim
-        $numLikes = Like::where('movie_id', $movie)->count();
-
         return response()->json([
             'message' => 'Unlike successful',
-            'num_likes' => $numLikes,
         ]);
     } else {
         return response()->json([
