@@ -107,7 +107,7 @@ Route::controller(BookSeatController::class)->group(function(){
 
 Route::controller(LikeController::class)->group(function(){
    Route::post('like','like');
-   Route::get('like/{id}','show');
+   Route::get('like/{id}','getLikesByMovieId');
    Route::post('unlike','unlike');
    Route::get('like','index');
 });

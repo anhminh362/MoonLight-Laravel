@@ -86,9 +86,4 @@ protected function index()
 
     return response()->json($likes, 200);
 }
-
-    // protected function index(){
-    //     $like=Like::all();
-    //     return response()->json([$like],200);
-    // }
 }
