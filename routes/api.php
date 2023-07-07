@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookSeatController;
 use App\Http\Controllers\BookTicketController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TicketController;
@@ -106,15 +107,20 @@ Route::controller(BookSeatController::class)->group(function(){
 
 Route::controller(LikeController::class)->group(function(){
    Route::post('like','like');
-   Route::get('like/{id}','show');
+   Route::get('like/{id}','getLikesByMovieId');
    Route::post('unlike','unlike');
    Route::get('like','index');
 });
 
-Route::get('sendmail',[SendEmailController::class, "SendMail"]);
+Route::post('sendmail',[SendEmailController::class, "SendMail"]);
 //========================Momo payment=========================//
 Route::get("MomoPayment",[PaymentController::class,"MomoPayment"]);
 Route::post('/MomoPayment', [PaymentController::class, 'MomoPayment']);
+<<<<<<< HEAD
 // ==============================================================//
 Route::get("addResult", [PaymentController::class, "getPaymentResult"]);
 Route::post("addResult", [PaymentController::class, "getPaymentResult"]);
+=======
+// ===============================
+Route::post('invoice',[InvoiceController::class,'store']);
+>>>>>>> ac6710d832f859f3dcb0dbe4fdde38e2313da4e8

@@ -6,7 +6,7 @@
     text-align: center
 }
 </style> --}}
-<div class="test-email" style="">
+<div class="test-email" >
     <h2>Hi,  {{$name}} </h2> 
     
         <h3>Thank you for choosing MoonLight Cinema. Your transaction has been processed sucessfully.</h3>
@@ -21,10 +21,11 @@
                 </div>
                 <hr style="width: 90%; border: 1px solid #efefef;">
                 <div style="font-size: 1.1rem; font-weight: 500; padding: 4px 16px;" class="ticketDetail">
-                    <div>Movie:&ensp; AVATAR </div>
+                    <div>Movie:{{$movie}}</div>
                     <div>Room:{{$room}}</div>
                     <div>Seat: {{$seat}}</div>
                     <div>Time: {{$time}}</div>
+                    <div>Date: {{$day}}</div>
                     <div>TotalPrice: {{$totalPrice}} </div>
                    
                 </div>
