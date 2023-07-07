@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Momo;
 class PaymentController extends Controller
 {
     public function execPostRequest($url, $data)
@@ -40,8 +40,10 @@ class PaymentController extends Controller
         $amount = $data_price;
         // $amount = 10000;
         $orderId = time() . "";
-        $redirectUrl = "http://localhost:3000/";
-        $ipnUrl = "http://localhost:3000/";
+        // $redirectUrl = "http://localhost:3000/PaymentResult";
+        // $ipnUrl = "http://localhost:3000/PaymentResult";
+        $redirectUrl = "http://localhost:8000/addResult";
+        $ipnUrl = "http://localhost:8000/addResult";
         $extraData = "";
         $requestId = time() . "";
         $requestType = "payWithATM";
@@ -71,4 +73,22 @@ class PaymentController extends Controller
         return $jsonResult['payUrl'];
         // header('Location: ' . $jsonResult['payUrl']);
     }
+    // public function getPaymentResult() {
+    //     if (isset($_GET['partnerCode'])) {
+    //         $data_momo = new Momo ([
+    //             'partnerCode' => $_GET['partnerCode'],
+    //             'orderId' => $_GET['orderId'],
+    //             'requestId' => $_GET['requestId'],
+    //             'amount' => $_GET['amount'],
+    //             'orderInfo' => $_GET['orderInfo'],
+    //             'orderType' => $_GET['orderType'],
+    //             'transId' => $_GET['transId'],
+    //             'payType' => $_GET['payType'],
+    //             'signature' => $_GET['signature']
+    //         ]);
+    //         $data_momo->save();
+    //     };
+    //     log('ádfasdfasf');
+    //     echo "abc";
+    // }
 }

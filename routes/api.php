@@ -115,3 +115,6 @@ Route::get('sendmail',[SendEmailController::class, "SendMail"]);
 //========================Momo payment=========================//
 Route::get("MomoPayment",[PaymentController::class,"MomoPayment"]);
 Route::post('/MomoPayment', [PaymentController::class, 'MomoPayment']);
+// ==============================================================//
+Route::get("addResult", [PaymentController::class, "getPaymentResult"]);
+Route::post("addResult", [PaymentController::class, "getPaymentResult"]);
