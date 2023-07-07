@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,19 @@ class UserController extends Controller
     protected function index()
     {
         $users = User::all();
-        return response()->json($users, 200);
+        $accounts = Account::all();
+
+        foreach ($users as $user) {
+            foreach ($accounts as $account) {
+                if ($user->account_id === $account->id) {
+                    $user->email = $account->email;
+                    $user->role=$account->role;
+                    break;
+                }
+            }
+    }
+
+    return response()->json($users, 200);
     }
 
     protected function show(string $id)
