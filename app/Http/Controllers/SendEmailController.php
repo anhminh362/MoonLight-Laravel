@@ -15,7 +15,17 @@ class SendEmailController extends Controller
 {
     public function SendMail(Request $request)
     {    
-        $user = User::find($request->input('user_id'));
+        $account = auth('sanctum')->user();
+        
+        if (!$account) {
+            return response()->json([
+                'message' => 'Please log in',
+            ]);
+        }
+        
+        $accountId = $account->id;
+        $userId = User::where('account_id', $accountId)->first()->id;
+        $user = User::find($userId);
         $schedule=Schedule::find($request->input('schedule_id'));
         $movieId=$schedule->movie_id;
         $toEmail =  Account::firstWhere('id',$user->account_id)->email;
